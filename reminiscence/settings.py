@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = '<Enter Secret Key Here>'
+SECRET_KEY = os.environ.setdefault("DJANGO_SECRET_KEY", "YOUR-SECRET-KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
@@ -241,7 +241,7 @@ DOWNLOAD_MANAGERS_ALLOWED = ['curl', 'wget']
 #Path to chromium executable or name of executable.
 #In some distro like ubuntu name of chromium executable is "chromium-browser".
 #So write it accordingly
- 
+
 CHROMIUM_COMMAND = "chromium"
 
 CHROMIUM_SANDBOX = True

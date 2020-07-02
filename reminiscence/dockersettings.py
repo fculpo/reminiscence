@@ -22,14 +22,13 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 
-SECRET_KEY = '<Enter Secret Key Here>'
+SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY", "YOUR-SECRET-KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-
 
 LOGGING = {
     'version': 1,
@@ -141,7 +140,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': os.environ.get('POSTGRES_NAME','postgres'),
-        'USER': os.environ.get('POSTGRES__USER','postgres'),
+        'USER': os.environ.get('POSTGRES_USER','postgres'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD','password'),
         'HOST': os.environ.get('DB_HOST','db'),
         'PORT': os.environ.get('DB_PORT',5432),
@@ -242,7 +241,7 @@ DOWNLOAD_MANAGERS_ALLOWED = ['curl', 'wget']
 #Path to chromium executable or name of executable.
 #In some distro like ubuntu name of chromium executable is "chromium-browser".
 #So write it accordingly
- 
+
 CHROMIUM_COMMAND = "chromium"
 
 CHROMIUM_SANDBOX = False

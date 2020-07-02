@@ -1,4 +1,4 @@
-From python:3.6-slim-stretch
+FROM python:3.6-slim-stretch
 
 WORKDIR /usr/src/reminiscence
 
@@ -18,3 +18,5 @@ COPY . /usr/src/reminiscence
 RUN mkdir -p logs archive tmp \
   && python manage.py applysettings --docker yes \
   && python manage.py generatesecretkey
+
+CMD ["gunicorn", "--max-requests", "1000", "--worker-class", "gthread", "--workers", "4", "--thread", "10", "--timeout", "300", "--bind", "0.0.0.0:8000", "reminiscence.wsgi"]
